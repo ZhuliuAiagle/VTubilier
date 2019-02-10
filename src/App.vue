@@ -17,9 +17,11 @@
       </el-header>
       <el-main style="text-align:left;">
           <div style="line-height: 50px;">
-            <h2 style="vertical-align: middle; color: white;"><i class="el-icon-date"></i>&nbsp;截至{{date}}&nbsp;&nbsp;
+            <h2 v-if="!loaded" style="vertical-align: middle; color: white;"><i class="el-icon-loading"></i>&nbsp;加载中，请稍后...</h2>
+            <h2 v-else style="vertical-align: middle; color: white;"><i class="el-icon-date"></i>&nbsp;截至{{date}}&nbsp;&nbsp;
             <el-button @click="refresh()" type="primary" icon="el-icon-refresh" style="vertical-align: middle" circle></el-button></h2>
           </div>
+          <div id="fill" v-if="!loaded"></div>
           <card v-for="(item, index) in items" :key="index" :rank="index+1" :name="item[0]" :fans="item[1]" :belong="item[2]" :avatar="item[3]"></card>
       </el-main>
     </el-container>
@@ -38,7 +40,9 @@ export default {
   data:function(){
     return{
       items: [],
-      date: ""
+      date: "",
+      loaded: false,
+      reloaded: true
     }
   },
   created: function(){
@@ -47,6 +51,7 @@ export default {
     .then(function(response){
       console.log(response["data"]);
       that.items = response["data"];
+      that.loaded = true;
       that.date = that.getDate()
     })
   },
@@ -55,11 +60,13 @@ export default {
   },
   methods: {
     refresh: function(){
+      this.loaded = false;
       var that = this
       axios.get("http://localhost:5000/fans")
       .then(function(response){
         console.log(response["data"]);
         that.items = response["data"];
+        that.loaded = true;
         that.date = that.getDate()
       })
     },
@@ -106,5 +113,8 @@ export default {
 }
 .el-column{
     text-align: center;
+}
+#fill{
+  height: 500px;
 }
 </style>

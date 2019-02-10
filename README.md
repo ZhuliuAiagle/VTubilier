@@ -1,29 +1,20 @@
-# front-end
+# bilibili人气虚拟YouTuber信息整合企划
 
-## Project setup
-```
-npm install
-```
+## 缘起
+嘛，虽然寒假单推了好多VTuber，也和其中一部分在twitter上进行了互动，但是发现除hololive和几个著名大物VTuber之外，其他的VTuber资料少之又少（连彩虹社都……），遂决定搞一些事情……至于要搞什么，能搞成什么样，还不知道，走一步看一步吧。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 现状
+最初的想法只是给b站比较活跃的几个官方号和搬运组打上标记做个类似国内粉丝排名的东西，现在基本已经实现了（……虽然还有好些bug需要调，自己前端也是刚学……）
+后来就在考虑可不可以整合多平台的数据，比如用twitter的API做个信息流什么的，再加上开播提醒，满足自己作为dd统揽全局的需求（大嘘）
 
-### Run your tests
-```
-npm run test
-```
+## 未来
+能做成什么样就什么样吧……反正离开学也不早了
+本来就是个前端学习项目还非要放到G站上丢人，我的脸皮也挺厚的嘛（奥尔加团长并感）
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 使用
+请参考vue-cli的doc
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+

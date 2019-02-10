@@ -85,7 +85,6 @@ export default {
 <style>
 #app{
   background-image: url("./assets/fubuki.jpg");
-  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 .el-header{

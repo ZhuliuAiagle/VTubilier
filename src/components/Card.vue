@@ -1,27 +1,29 @@
 <template>
-    <div>
-        <el-card class="box-card">
-            <el-row style="top: 0;">
-                <el-col span="4">
-                    <div class="avatar-container">
-                        <img class="avatar" :src="avatar"/>
-                    </div>
-                </el-col>
-                <el-col span="12" style="text-align: left; vertical-align: middle;">
-                <el-row>
-                    <h1>{{rank}}. {{name}}</h1>
+    <transition v-if="show" name="el-fade-in-linear">
+        <div>
+            <el-card class="box-card">
+                <el-row style="top: 0;">
+                    <el-col span="4">
+                        <div class="avatar-container">
+                            <img class="avatar" :src="avatar"/>
+                        </div>
+                    </el-col>
+                    <el-col span="12" style="text-align: left; vertical-align: middle;">
+                    <el-row>
+                        <h1>{{rank}}. {{name}}</h1>
+                    </el-row>
+                    <el-row>
+                        <p>所属: {{belong}}</p>
+                    </el-row>
+                    </el-col>
+                    <el-col span="8" style="text-align: right; vertical-align: middle;">
+                    <p style="font-size: 40px; color: grey">{{fans}} 人</p>
+                    </el-col>
                 </el-row>
-                <el-row>
-                    <p>所属: {{belong}}</p>
-                </el-row>
-                </el-col>
-                <el-col span="8" style="text-align: right; vertical-align: middle;">
-                <p style="font-size: 40px; color: grey">{{fans}} 人</p>
-                </el-col>
-            </el-row>
-        </el-card>
-        <br/>
-    </div>
+            </el-card>
+            <br/>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -32,7 +34,8 @@ export default {
         name: String,
         belong: String,
         fans: Number,
-        avatar: String
+        avatar: String,
+        show: false
     }
 }
 </script>

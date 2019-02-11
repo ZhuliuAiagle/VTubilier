@@ -2,8 +2,8 @@
   <div id="app">
     <el-container>
       <div style="height: 60px;"></div>
-      <!-- dialog -->
-      <el-dialog title="关于本项目的作者" :visible.sync="authorDialogVisible" center>
+      <!-- author-dialog -->
+      <el-dialog width="30%" title="关于本项目的作者" :visible.sync="authorDialogVisible" center>
         <div class="author-dialog-content" style="text-align: center">
           <img src="./assets/neko.jpg" class="dialog-avatar"/>
           <h1>Chubby🐰</h1>
@@ -13,6 +13,13 @@
           <p>Twitter: @hemmyshen</p>
         </div>
       </el-dialog>
+      <!-- qrcode-dialog -->
+      <el-dialog width="40%" title="您的支持是我不断创作的动力QAQ" :visible.sync="qrcodeDialogVisible" center>
+        <div class="author-dialog-content" style="text-align: center">
+          <img src="./assets/wechat.jpg" class="qrcode"/>
+        </div>
+      </el-dialog>
+      <!-- page -->
       <el-header>
           <el-row>
               <el-col :span="1" style="font-size: 20px text-align: center">
@@ -22,7 +29,7 @@
                   </el-button>
                   <el-dropdown-menu slot="dropdown"> 
                     <el-dropdown-item command="a">关于作者</el-dropdown-item>
-                    <el-dropdown-item command="b">鸣谢</el-dropdown-item>
+                    <el-dropdown-item command="b">感谢作者</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </el-col>
@@ -65,7 +72,8 @@ export default {
       date: "",
       loaded: false,
       reloaded: true,
-      authorDialogVisible: false
+      authorDialogVisible: false,
+      qrcodeDialogVisible: false
     }
   },
   created: function(){
@@ -101,6 +109,8 @@ export default {
     handleCommand: function(command){
         if(command == 'a'){
           this.authorDialogVisible = true;
+        }else if(command == 'b'){
+          this.qrcodeDialogVisible = true;
         }else{
           alert("正在开发中，敬请期待！")
         }
@@ -149,5 +159,7 @@ export default {
 .dialog-avatar{
     width: 150px;
 }
-
+.qrcode{
+  width: 300px;
+}
 </style>

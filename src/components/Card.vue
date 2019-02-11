@@ -1,25 +1,27 @@
 <template>
     <transition v-if="show" name="el-fade-in-linear">
         <div>
-            <el-card class="box-card">
-                <el-row style="top: 0;">
-                    <el-col span="4">
-                        <div class="avatar-container">
-                            <img class="avatar" :src="avatar"/>
-                        </div>
-                    </el-col>
-                    <el-col span="12" style="text-align: left; vertical-align: middle;">
-                    <el-row>
-                        <h1>{{rank}}. {{name}}</h1>
+            <el-card :class="[living?'online-card':'offline-card']">
+                <a :href="space" style="color:black;">
+                    <el-row style="top: 0;">
+                        <el-col span="4">
+                            <div class="avatar-container">
+                                    <img class="avatar" :src="avatar"/>
+                            </div>
+                        </el-col>
+                        <el-col span="12" style="text-align: left; vertical-align: middle;">
+                        <el-row>
+                            <h1>{{rank}}. {{name}}<span v-if="living">(配信中)</span></h1>
+                        </el-row>
+                        <el-row>
+                            <p>所属: {{belong}}</p>
+                        </el-row>
+                        </el-col>
+                        <el-col span="8" style="text-align: right; vertical-align: middle;">
+                        <p style="font-size: 40px;">{{fans}} 人</p>
+                        </el-col>
                     </el-row>
-                    <el-row>
-                        <p>所属: {{belong}}</p>
-                    </el-row>
-                    </el-col>
-                    <el-col span="8" style="text-align: right; vertical-align: middle;">
-                    <p style="font-size: 40px; color: grey">{{fans}} 人</p>
-                    </el-col>
-                </el-row>
+                </a>
             </el-card>
             <br/>
         </div>
@@ -35,14 +37,28 @@ export default {
         belong: String,
         fans: Number,
         avatar: String,
-        show: false
+        show: false,
+        space: String,
+        living: Boolean
     }
+    
 }
 </script>
 
 <style>
-.el-card{
+.offline-card{
     opacity:0.9;
+}
+.online-card{
+    opacity:0.9;
+    background-color: #67C23A !important;
+    border: 0px !important;
+}
+.online-card h1{
+    color: white !important;
+}
+.online-card p{
+    color: white !important;
 }
 .avatar{
     position:absolute;

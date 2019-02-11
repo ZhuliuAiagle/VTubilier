@@ -34,24 +34,39 @@
                 </el-dropdown>
               </el-col>
               <el-col :span="2" style="font-size: 20px text-align: center">
-                <img src="./assets/bili.png" style="width: 60px; vertical-align: middle;">
+                <a href="https://www.bilibili.com">
+                  <img src="./assets/bili.png" style="width: 60px; vertical-align: middle;">
+                </a>
               </el-col>
               <el-col :span="16" style="text-align: left; font-size: 20px">
                 VTuber粉丝数实时排行榜
               </el-col>
               <el-col :span="5" style="text-align: right;">
-                  v0.5.4 by zijin
+                <a href="https://github.com/ZhuliuAiagle/VTubilier" style="color: white; text-decoration: none;">
+                <el-popover
+                placement="bottom"
+                title="当前版本"
+                width="200"
+                trigger="hover" 
+                content="点击访问Github仓库">
+                  <span slot="reference">
+                    v0.5.6 by zijin
+                  </span>
+                </el-popover>
+                </a>
               </el-col>
           </el-row>
       </el-header>
       <el-main style="text-align:left;">
           <div style="line-height: 50px;">
-            <h2 v-if="!loaded" style="vertical-align: middle; color: white;"><i class="el-icon-loading"></i>&nbsp;正在从bilibili API获取数据，请稍后...</h2>
+            <h2 v-if="!loaded" style="vertical-align: middle; color: white;">
+              <i class="el-icon-loading"></i>&nbsp;正在从bilibili API获取数据，请稍候...</h2>
             <h2 v-else style="vertical-align: middle; color: white;"><i class="el-icon-date"></i>&nbsp;截至{{date}}&nbsp;&nbsp;
             <el-button @click="refresh()" type="primary" icon="el-icon-refresh" style="vertical-align: middle" circle></el-button></h2>
           </div>
           <div id="fill" v-if="!loaded"></div>
-          <card  v-for="(item, index) in items" :show="loaded" :key="index" :rank="index+1" :name="item[0]" :fans="item[1]" :belong="item[2]" :avatar="item[3]"></card>
+          <card  v-for="(item, index) in items" :show="loaded" :key="index" :rank="index+1" :name="item[0]" :fans="item[1]" 
+          :belong="item[2]" :avatar="item[3]" :space="item[4]" :living="item[5]==1?true:false"></card>
       </el-main>
     </el-container>
   </div>

@@ -2,16 +2,27 @@
   <div id="app">
     <el-container>
       <div style="height: 60px;"></div>
+      <!-- dialog -->
+      <el-dialog title="关于本项目的作者" :visible.sync="authorDialogVisible" center>
+        <div class="author-dialog-content" style="text-align: center">
+          <img src="./assets/neko.jpg" class="dialog-avatar"/>
+          <h1>Chubby🐰</h1>
+          <p>咸鱼大三天狗，喜欢VTuber，喜欢P社，喜欢旅游</p>
+          <p>GitHub: ZhuliuAiagle</p>
+          <p>Mail: hemmyshen@gmail.com</p>
+          <p>Twitter: @hemmyshen</p>
+        </div>
+      </el-dialog>
       <el-header>
           <el-row>
               <el-col :span="1" style="font-size: 20px text-align: center">
-                <el-dropdown>
+                <el-dropdown @command="handleCommand">
                   <el-button type="primary">
                     <img src="./assets/sidebar.png" style="left: 0; width: 20px; vertical-align: middle;">
                   </el-button>
                   <el-dropdown-menu slot="dropdown"> 
-                    <el-dropdown-item>关于作者</el-dropdown-item>
-                    <el-dropdown-item>鸣谢</el-dropdown-item>
+                    <el-dropdown-item command="a">关于作者</el-dropdown-item>
+                    <el-dropdown-item command="b">鸣谢</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </el-col>
@@ -22,7 +33,7 @@
                 VTuber粉丝数实时排行榜
               </el-col>
               <el-col :span="5" style="text-align: right;">
-                  v0.5.3 by zijin
+                  v0.5.4 by zijin
               </el-col>
           </el-row>
       </el-header>
@@ -53,7 +64,8 @@ export default {
       items: [],
       date: "",
       loaded: false,
-      reloaded: true
+      reloaded: true,
+      authorDialogVisible: false
     }
   },
   created: function(){
@@ -85,6 +97,13 @@ export default {
       var date = new Date();
       return date.getFullYear().toString() +'-'+ (date.getMonth()+1).toString() + '-' + date.getDate().toString() + ' ' + 
       date.getHours().toString() + ':' + (date.getMinutes().toString().length < 2 ? "0":"") + date.getMinutes().toString() 
+    },
+    handleCommand: function(command){
+        if(command == 'a'){
+          this.authorDialogVisible = true;
+        }else{
+          alert("正在开发中，敬请期待！")
+        }
     }
   }
 }
@@ -127,4 +146,8 @@ export default {
 #fill{
   height: 500px;
 }
+.dialog-avatar{
+    width: 150px;
+}
+
 </style>

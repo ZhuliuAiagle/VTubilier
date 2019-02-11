@@ -5,7 +5,15 @@
       <el-header>
           <el-row>
               <el-col :span="1" style="font-size: 20px text-align: center">
-                  <img src="./assets/sidebar.png" style="left: 0; width: 20px; vertical-align: middle;">
+                <el-dropdown>
+                  <el-button type="primary">
+                    <img src="./assets/sidebar.png" style="left: 0; width: 20px; vertical-align: middle;">
+                  </el-button>
+                  <el-dropdown-menu slot="dropdown"> 
+                    <el-dropdown-item>关于作者</el-dropdown-item>
+                    <el-dropdown-item>鸣谢</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
               </el-col>
               <el-col :span="2" style="font-size: 20px text-align: center">
                 <img src="./assets/bili.png" style="width: 60px; vertical-align: middle;">
@@ -14,7 +22,7 @@
                 VTuber粉丝数实时排行榜
               </el-col>
               <el-col :span="5" style="text-align: right;">
-                  v0.5.2 by zijin
+                  v0.5.3 by zijin
               </el-col>
           </el-row>
       </el-header>

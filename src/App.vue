@@ -47,10 +47,10 @@
                 </a>
               </el-col>
               <el-col :span="10" style="text-align: left; font-size: 20px">
-                VTuber排行榜
+                VTuber实时排行榜
               </el-col>
               <el-col :span="7">
-                <el-input v-model="searchInput" placeholder="请输入内容"></el-input>
+                <el-input v-model="searchInput" placeholder="搜索Vtuber..."></el-input>
               </el-col>
               <el-col :span="4" style="text-align: right;">
                 <a href="https://github.com/ZhuliuAiagle/VTubilier" style="color: white; text-decoration: none;">
@@ -61,7 +61,7 @@
                 trigger="hover" 
                 content="点击访问Github仓库">
                   <span slot="reference">
-                    v0.6.5 by zijin
+                    v0.6.5 by Chubby
                   </span>
                 </el-popover>
                 </a>
@@ -74,7 +74,7 @@
               <i class="el-icon-loading"></i>&nbsp;正在从bilibili API获取数据，请稍候...</h2>
             <h2 v-else style="vertical-align: middle; color: white;"><i class="el-icon-date"></i>&nbsp;截至{{date}}&nbsp;&nbsp;
             <el-button @click="refresh()" type="primary" icon="el-icon-refresh" style="vertical-align: middle" circle></el-button>
-            &nbsp;&nbsp;&nbsp;<el-checkbox v-model="checked">只显示正在直播的账号</el-checkbox></h2>
+            &nbsp;&nbsp;&nbsp;<el-checkbox v-model="checked">正在直播的账号</el-checkbox></h2>
           </div>
           <div id="fill" v-if="!loaded"></div>
           <card  v-for="(item, index) in items" :show="loaded" :key="index" :rank="index+1" :name="item[0]" :fans="item[1]" 
@@ -182,15 +182,17 @@ export default {
 }
 .el-checkbox__inner{
   background-color: transparent !important;
-  width: 25px !important; 
-  height: 25px !important;
-  border: 3px solid #dcdfe6 !important;
+  border: 1px solid #dcdfe6 !important;
+  zoom: 200%;
+}
+.el-checkbox__input.is-checked + .el-checkbox__label{
+  font-weight: 800 !important;
+  color: white !important;
 }
 .el-checkbox__label{
   color: white;
 }
 .el-checkbox{
-  font-weight: 800 !important;
   font-size: 20px !important;
 }
 .el-footer{

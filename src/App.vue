@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <div id="top" style="height: 60px;"></div>
+      <div id="top" style="height: 60px;" ></div>
       <!-- author-dialog -->
       <el-dialog width="30%" title="About Me" :visible.sync="authorDialogVisible" center>
         <div class="author-dialog-content" style="text-align: center">
@@ -23,7 +23,7 @@
       <el-dialog width="50%" title="网络连接异常" :visible.sync="timeoutDialogVisible" center>
         <div class="author-dialog-content" style="text-align: center">
           <img src="./assets/timeout.png" class="timeout-icon"/>
-          <h1>服务器繁忙</h1>
+          <h1>500: 服务器繁忙</h1>
           <p>请稍后尝试刷新页面，或检查网络连接</p>
         </div>
       </el-dialog>
@@ -46,10 +46,13 @@
                   <img src="./assets/bili.png" style="width: 60px; vertical-align: middle;">
                 </a>
               </el-col>
-              <el-col :span="16" style="text-align: left; font-size: 20px">
+              <el-col :span="10" style="text-align: left; font-size: 20px">
                 VTuber排行榜
               </el-col>
-              <el-col :span="5" style="text-align: right;">
+              <el-col :span="7">
+                <el-input v-model="searchInput" placeholder="请输入内容"></el-input>
+              </el-col>
+              <el-col :span="4" style="text-align: right;">
                 <a href="https://github.com/ZhuliuAiagle/VTubilier" style="color: white; text-decoration: none;">
                 <el-popover
                 placement="bottom"
@@ -58,7 +61,7 @@
                 trigger="hover" 
                 content="点击访问Github仓库">
                   <span slot="reference">
-                    v0.6.3 by zijin
+                    v0.6.5 by zijin
                   </span>
                 </el-popover>
                 </a>
@@ -70,11 +73,13 @@
             <h2 v-if="!loaded" style="vertical-align: middle; color: white;">
               <i class="el-icon-loading"></i>&nbsp;正在从bilibili API获取数据，请稍候...</h2>
             <h2 v-else style="vertical-align: middle; color: white;"><i class="el-icon-date"></i>&nbsp;截至{{date}}&nbsp;&nbsp;
-            <el-button @click="refresh()" type="primary" icon="el-icon-refresh" style="vertical-align: middle" circle></el-button></h2>
+            <el-button @click="refresh()" type="primary" icon="el-icon-refresh" style="vertical-align: middle" circle></el-button>
+            &nbsp;&nbsp;&nbsp;<el-checkbox v-model="checked">只显示正在直播的账号</el-checkbox></h2>
           </div>
           <div id="fill" v-if="!loaded"></div>
           <card  v-for="(item, index) in items" :show="loaded" :key="index" :rank="index+1" :name="item[0]" :fans="item[1]" 
-          :belong="item[2]" :avatar="item[3]" :space="item[4]" :living="item[5]==1?true:false"></card>
+          :belong="item[2]" :avatar="item[3]" :space="item[4]" :living="item[5]==1?true:false" :display="checked"></card>
+          <div id="fill" v-if="checked"></div>
       </el-main>
       <el-footer>
         <a href="#top">
@@ -104,7 +109,9 @@ export default {
       authorDialogVisible: false,
       qrcodeDialogVisible: false,
       timeoutDialogVisible: false,
-      timeoutMsg:""
+      timeoutMsg:"",
+      searchInput: '',
+      checked: false
     }
   },
   created: function(){
@@ -168,6 +175,23 @@ export default {
     background-color: teal;
     color: white;
     opacity:0.9;
+}
+.el-input__inner{
+  height: 35px !important;
+  opacity: 0.7 !important;
+}
+.el-checkbox__inner{
+  background-color: transparent !important;
+  width: 25px !important; 
+  height: 25px !important;
+  border: 3px solid #dcdfe6 !important;
+}
+.el-checkbox__label{
+  color: white;
+}
+.el-checkbox{
+  font-weight: 800 !important;
+  font-size: 20px !important;
 }
 .el-footer{
   left: 0;

@@ -1,8 +1,8 @@
 <template>
-    <transition v-if="show" name="el-fade-in-linear">
+    <transition v-if="show&&(!display || living)" name="el-fade-in-linear">
         <div>
             <el-card :class="[living?'online-card':'offline-card']">
-                <a :href="space" style="color:black;">
+                <a :href="space" style="color:black;" target="_blank">
                     <el-row style="top: 0;">
                         <el-col span="4">
                             <div class="avatar-container">
@@ -39,7 +39,8 @@ export default {
         avatar: String,
         show: Boolean,
         space: String,
-        living: Boolean
+        living: Boolean,
+        display: Boolean
     }
     
 }

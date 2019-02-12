@@ -11,7 +11,7 @@
                         </el-col>
                         <el-col span="12" style="text-align: left; vertical-align: middle;">
                         <el-row>
-                            <h1>{{rank}}. {{name}}<span v-if="living">(配信中)</span></h1>
+                            <h1>{{rank}}. {{name}}<span v-if="living">(直播中)</span></h1>
                         </el-row>
                         <el-row>
                             <p>所属: {{belong}}</p>
@@ -37,7 +37,7 @@ export default {
         belong: String,
         fans: Number,
         avatar: String,
-        show: false,
+        show: Boolean,
         space: String,
         living: Boolean
     }
@@ -71,7 +71,7 @@ export default {
     z-Index:-1;
 }
 .avatar-container{
-    width:130px; 
+    width:65%; 
     padding-top:10.9%; 
     margin-right:2.8%; 
     border-radius:50%;

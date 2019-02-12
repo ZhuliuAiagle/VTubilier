@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-container>
-      <div style="height: 60px;"></div>
+      <div id="top" style="height: 60px;"></div>
       <!-- author-dialog -->
-      <el-dialog width="30%" title="关于本项目的作者" :visible.sync="authorDialogVisible" center>
+      <el-dialog width="30%" title="About Me" :visible.sync="authorDialogVisible" center>
         <div class="author-dialog-content" style="text-align: center">
           <img src="./assets/neko.jpg" class="dialog-avatar"/>
           <h1>Chubby🐰</h1>
@@ -17,6 +17,14 @@
       <el-dialog width="40%" title="您的支持是我不断创作的动力QAQ" :visible.sync="qrcodeDialogVisible" center>
         <div class="author-dialog-content" style="text-align: center">
           <img src="./assets/wechat.jpg" class="qrcode"/>
+        </div>
+      </el-dialog>
+      <!--timeout-dialog-->
+      <el-dialog width="50%" title="网络连接异常" :visible.sync="timeoutDialogVisible" center>
+        <div class="author-dialog-content" style="text-align: center">
+          <img src="./assets/timeout.png" class="timeout-icon"/>
+          <h1>服务器繁忙</h1>
+          <p>请稍后尝试刷新页面，或检查网络连接</p>
         </div>
       </el-dialog>
       <!-- page -->
@@ -39,7 +47,7 @@
                 </a>
               </el-col>
               <el-col :span="16" style="text-align: left; font-size: 20px">
-                VTuber粉丝数实时排行榜
+                VTuber排行榜
               </el-col>
               <el-col :span="5" style="text-align: right;">
                 <a href="https://github.com/ZhuliuAiagle/VTubilier" style="color: white; text-decoration: none;">
@@ -50,7 +58,7 @@
                 trigger="hover" 
                 content="点击访问Github仓库">
                   <span slot="reference">
-                    v0.5.6 by zijin
+                    v0.6.3 by zijin
                   </span>
                 </el-popover>
                 </a>
@@ -68,6 +76,12 @@
           <card  v-for="(item, index) in items" :show="loaded" :key="index" :rank="index+1" :name="item[0]" :fans="item[1]" 
           :belong="item[2]" :avatar="item[3]" :space="item[4]" :living="item[5]==1?true:false"></card>
       </el-main>
+      <el-footer>
+        <a href="#top">
+            <el-button class="topback" type="primary" icon="el-icon-caret-top" 
+            circle></el-button>
+        </a>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -88,7 +102,9 @@ export default {
       loaded: false,
       reloaded: true,
       authorDialogVisible: false,
-      qrcodeDialogVisible: false
+      qrcodeDialogVisible: false,
+      timeoutDialogVisible: false,
+      timeoutMsg:""
     }
   },
   created: function(){
@@ -99,6 +115,9 @@ export default {
       that.items = response["data"];
       that.loaded = true;
       that.date = that.getDate()
+    }).catch(function(error){
+      that.timeoutMsg = error
+      that.timeoutDialogVisible = true
     })
   },
   computed: {
@@ -144,23 +163,33 @@ export default {
     right: 0;
     text-align: center;
     line-height: 60px;
-    /*box-shadow: 3px 3px 7px #B3C0D1;*/
     z-index: 999;
     position: fixed;
     background-color: teal;
     color: white;
     opacity:0.9;
 }
+.el-footer{
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  position: fixed;
+  line-height: 90px;
+  z-index: 999;
+  background-color:transparent;
+  color: white;
+  text-align:right;
+}
+.topback{
+  bottom:20px;
+  vertical-align: middle;
+  font-size:30px !important;
+  padding: 15px !important;
+}
 .el-aside{
     text-align: left;
     line-height: 400px;
 
-}
-.el-footer{
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
 }
 .el-menu{
     background-color: #B3C0D1;
@@ -176,5 +205,8 @@ export default {
 }
 .qrcode{
   width: 300px;
+}
+.timeout-icon{
+  width:100px;
 }
 </style>

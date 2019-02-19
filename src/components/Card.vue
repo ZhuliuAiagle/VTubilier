@@ -13,12 +13,12 @@
                         <el-row>
                             <h1>{{rank}}. {{name}}<span v-if="living">(直播中)</span></h1>
                         </el-row>
-                        <el-row>
+                        <el-row style="display:none;">
                             <p>所属: {{belong}}</p>
                         </el-row>
                         </el-col>
                         <el-col span="8" style="text-align: right; vertical-align: middle;">
-                        <p style="font-size: 40px;">{{fans}} 人</p>
+                        <p style="font-size: 23px;">{{fans}} 人</p>
                         </el-col>
                     </el-row>
                 </a>
@@ -68,7 +68,7 @@ export default {
     border-radius:50%;
     -webkit-border-radius:50%;
     -moz-border-radius:50%; 
-    width:100%;
+    width:60%;
     z-Index:-1;
 }
 .avatar-container{
@@ -81,3 +81,5 @@ export default {
     position:relative;
 }
 </style>
+
+

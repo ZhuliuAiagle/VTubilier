@@ -164,6 +164,7 @@ export default {
 #app{
   background-image: url("./assets/fubuki.jpg");
   background-attachment: fixed;
+  font-family:"Microsoft YaHei";
 }
 .el-header{
     left: 0;

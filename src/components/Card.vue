@@ -49,6 +49,7 @@ export default {
 <style>
 .offline-card{
     opacity:0.9;
+    background-color: #CCCCCC !important;
 }
 .online-card{
     opacity:0.9;
@@ -68,7 +69,7 @@ export default {
     border-radius:50%;
     -webkit-border-radius:50%;
     -moz-border-radius:50%; 
-    width:60%;
+    width:82px;
     z-Index:-1;
 }
 .avatar-container{

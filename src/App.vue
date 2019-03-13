@@ -70,9 +70,9 @@
       </el-header>
       <el-main style="text-align:left;">
           <div style="line-height: 50px;">
-            <h2 v-if="!loaded" style="vertical-align: middle; color: white;">
+            <h2 v-if="!loaded" style="vertical-align: middle;">
               <i class="el-icon-loading"></i>&nbsp;正在从bilibili API获取数据，请稍候...</h2>
-            <h2 v-else style="vertical-align: middle; color: white;"><i class="el-icon-date"></i>&nbsp;截至{{date}}&nbsp;&nbsp;
+            <h2 v-else style="vertical-align: middle;"><i class="el-icon-date"></i>&nbsp;截至{{date}}&nbsp;&nbsp;
             <el-button @click="refresh()" type="primary" icon="el-icon-refresh" style="vertical-align: middle" circle></el-button>
             &nbsp;&nbsp;&nbsp;<el-checkbox v-model="checked">正在直播的账号</el-checkbox></h2>
           </div>
@@ -162,8 +162,6 @@ export default {
 
 <style>
 #app{
-  background-image: url("./assets/fubuki.jpg");
-  background-attachment: fixed;
   font-family:"Microsoft YaHei";
 }
 .el-header{
@@ -182,16 +180,12 @@ export default {
   opacity: 0.7 !important;
 }
 .el-checkbox__inner{
-  background-color: transparent !important;
-  border: 1px solid #dcdfe6 !important;
   zoom: 200%;
 }
 .el-checkbox__input.is-checked + .el-checkbox__label{
   font-weight: 800 !important;
-  color: white !important;
 }
 .el-checkbox__label{
-  color: white;
 }
 .el-checkbox{
   font-size: 20px !important;

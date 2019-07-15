@@ -23,7 +23,7 @@
       <el-dialog width="50%" title="网络连接异常" :visible.sync="timeoutDialogVisible" center>
         <div class="author-dialog-content" style="text-align: center">
           <img src="./assets/timeout.png" class="timeout-icon"/>
-          <h1>500: 服务器繁忙</h1>
+          <h1>500: 服务器错误</h1>
           <p>请稍后尝试刷新页面，或检查网络连接</p>
         </div>
       </el-dialog>
@@ -47,7 +47,7 @@
                 </a>
               </el-col>
               <el-col :span="10" style="text-align: left; font-size: 20px">
-                VTuber实时排行榜
+                hololive个人用斗虫楼
               </el-col>
               <el-col :span="7">
                 <el-input v-model="searchInput" placeholder="搜索Vtuber..."></el-input>
@@ -61,7 +61,7 @@
                 trigger="hover" 
                 content="点击访问Github仓库">
                   <span slot="reference">
-                    v0.6.5 by Chubby
+                    v0.7.9 by Chubby
                   </span>
                 </el-popover>
                 </a>
@@ -78,7 +78,7 @@
           </div>
           <div id="fill" v-if="!loaded"></div>
           <card  v-for="(item, index) in items" :show="loaded" :key="index" :rank="index+1" :name="item[0]" :fans="item[1]" 
-          :belong="item[2]" :avatar="item[3]" :space="item[4]" :living="item[5]==1?true:false" :display="checked"></card>
+          :belong="item[2]" :avatar="item[3]" :space="item[4]" :living="item[5]==1?true:false" :display="checked" :ninki="item[6]" :title="item[7]"></card>
           <div id="fill" v-if="checked"></div>
       </el-main>
       <el-footer>
@@ -171,7 +171,7 @@ export default {
     line-height: 60px;
     z-index: 999;
     position: fixed;
-    background-color: teal;
+    background-color: #409EFF;
     color: white;
     opacity:0.9;
 }

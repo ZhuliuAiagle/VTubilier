@@ -11,10 +11,10 @@
                         </el-col>
                         <el-col span="12" style="text-align: left; vertical-align: middle;">
                         <el-row>
-                            <h1>{{rank}}. {{name}}<span v-if="living">(直播中)</span></h1>
+                            <h1>{{rank}}. {{name}}<span v-if="living">&nbsp;({{title}})</span></h1>
                         </el-row>
-                        <el-row style="display:none;">
-                            <p>所属: {{belong}}</p>
+                        <el-row v-if="living">
+                            <p>人气值: {{ninki}}</p>
                         </el-row>
                         </el-col>
                         <el-col span="8" style="text-align: right; vertical-align: middle;">
@@ -40,7 +40,9 @@ export default {
         show: Boolean,
         space: String,
         living: Boolean,
-        display: Boolean
+        display: Boolean,
+        ninki: Number,
+        title: String
     }
     
 }
@@ -53,7 +55,7 @@ export default {
 }
 .online-card{
     opacity:0.9;
-    background-color: #67C23A !important;
+    background-color: #409EFF !important;
     border: 0px !important;
 }
 .online-card h1{
